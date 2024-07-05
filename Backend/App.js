@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(bodyParser.json());
 
-const username = "20eg103319";
-const password = encodeURIComponent("Saroj@2002");
+const username = process.env.Username;
+const password = encodeURIComponent(process.env.Password);
 console.log(password,username)
 const url = `mongodb+srv://${username}:${password}@mydata.bkwkloc.mongodb.net/?retryWrites=true&w=majority&appName=MyData`;
 
