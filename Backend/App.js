@@ -48,7 +48,7 @@ app.post('/', async (req, res) => {
 });
 
 // Read all To-Dos
-app.get('/todos', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         const todos = await Todo.find();
         res.json(todos);
