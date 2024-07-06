@@ -1,13 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-require('dotenv').config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables
 
 const app = express();
 app.use(bodyParser.json());
 
-const username = process.env.USERNAME1;
-const password = encodeURIComponent(process.env.Password);
+const username = process.env.USERNAME1; // Ensure the environment variable names are correct
+const password = encodeURIComponent(process.env.PASSWORD);
 
 const url = `mongodb+srv://${username}:${password}@mydata.bkwkloc.mongodb.net/?retryWrites=true&w=majority&appName=MyData`;
 
