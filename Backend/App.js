@@ -1,13 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
 
-const username = process.env.Username;
+const username = process.env.USERNAME1;
 const password = encodeURIComponent(process.env.Password);
-console.log(password,username)
+
 const url = `mongodb+srv://${username}:${password}@mydata.bkwkloc.mongodb.net/?retryWrites=true&w=majority&appName=MyData`;
 
 // Connect to MongoDB Atlas
