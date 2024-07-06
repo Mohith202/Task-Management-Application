@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import path from 'path';
+
 
 dotenv.config(); // Load environment variables
 
@@ -12,7 +12,7 @@ app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const username = process.env.USERNAME1; // Ensure the environment variable names are correct
 const password = encodeURIComponent(process.env.PASSWORD);
@@ -34,7 +34,7 @@ const todoSchema = new mongoose.Schema({
     title: String,
     description: String,
     date: String,
-    detail_description: String
+    
 });
 
 const Todo = mongoose.model('Todo', todoSchema);
@@ -42,8 +42,8 @@ const Todo = mongoose.model('Todo', todoSchema);
 // Create a new To-Do
 app.post('/', async (req, res) => {
     try {
-        const { title, description, date, detail_description } = req.body;
-        const newTodo = new Todo({ title, description, date, detail_description });
+        const { title, description, date} = req.body;
+        const newTodo = new Todo({ title, description, date });
         await newTodo.save();
         res.status(201).json(newTodo);
     } catch (err) {
@@ -79,7 +79,7 @@ app.get('/todos/:id', async (req, res) => {
 app.put('/todos/:id', async (req, res) => {
     try {
         const { title, description, date, detail_description } = req.body;
-        const todo = await Todo.findByIdAndUpdate(req.params.id, { title, description, date, detail_description }, { new: true });
+        const todo = await Todo.findByIdAndUpdate(req.params.id, { title, description, date}, { new: true });
         if (todo) {
             res.json(todo);
         } else {
