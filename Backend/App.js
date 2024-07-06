@@ -2,10 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from "cors";
 
 dotenv.config(); // Load environment variables
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 const username = process.env.USERNAME1; // Ensure the environment variable names are correct
