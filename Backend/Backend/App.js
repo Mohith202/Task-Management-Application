@@ -3,12 +3,16 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from "cors";
+import path from 'path';
 
 dotenv.config(); // Load environment variables
 
 const app = express();
-app.use(cors());
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 const username = process.env.USERNAME1; // Ensure the environment variable names are correct
 const password = encodeURIComponent(process.env.PASSWORD);
@@ -48,7 +52,7 @@ app.post('/', async (req, res) => {
 });
 
 // Read all To-Dos
-app.get('/', async (req, res) => {
+app.get('/todos', async (req, res) => {
     try {
         const todos = await Todo.find();
         res.json(todos);
